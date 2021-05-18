@@ -818,7 +818,7 @@ small {
   border: 1px solid #6c757d;
   border-radius: .25rem;
   max-width: 100%;
-  height: auto;
+/*  height: auto;*/
 }
 
 .sidebar-user .online-icon {

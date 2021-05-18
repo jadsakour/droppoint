@@ -35,6 +35,8 @@ Route::get('/s', function () {
 });
 
 
+Auth::routes();
+Route::group(['middleware' => ['auth']], function() {
 //dashboard routes
 
   Route::get('/service_cat', 'ServicesCatController@index')->name('service_cat.index');
@@ -65,9 +67,18 @@ Route::get('/s', function () {
   Route::post('/service_provider/update/{id}', 'ServiceProviderController@update')->name('service_provider.update');
   Route::delete('/service_provider/{id}', 'ServiceProviderController@destroy')->name('service_provider.destroy');
 
-  Route::get('/item', 'ItemController@index')->name('item.index');
+  Route::get('/item', 'ItemController@index')->name('home');
   Route::get('/item/create', 'ItemController@create')->name('item.create');
   Route::post('/item/store', 'ItemController@store')->name('item.store');
   Route::get('/item/edit/{id}', 'ItemController@edit')->name('item.edit');
   Route::post('/item/update/{id}', 'ItemController@update')->name('item.update');
   Route::delete('/item/{id}', 'ItemController@destroy')->name('item.destroy');
+
+
+
+Route::resource('users', 'UserController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('permissions', 'PermissionController');
+});
